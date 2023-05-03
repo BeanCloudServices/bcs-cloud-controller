@@ -39,7 +39,8 @@ jobs:
       - name: Test
         run: go test ./test/e2e/*
 
-  build:
+  build-ami:
+
     name: Packer Build
     if: github.ref == 'refs/heads/master'
     needs: [ branch, test ]
