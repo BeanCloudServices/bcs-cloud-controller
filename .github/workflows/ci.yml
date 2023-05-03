@@ -1,4 +1,5 @@
-name: Packer Build
+name: Build - Test - Push
+
 
 on:
   push:
