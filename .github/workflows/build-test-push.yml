@@ -41,7 +41,7 @@ jobs:
 
   build:
     name: Packer Build
-    if: github.ref == "refs/heads/master"
+    if: github.ref == 'refs/heads/master'
     needs: [ branch, test ]
     runs-on: ubuntu-latest
     environment: ${{ needs.branch.outputs.env_name }}
