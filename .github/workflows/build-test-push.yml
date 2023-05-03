@@ -2,8 +2,6 @@ name: Build - Test - Push
 
 on:
   push:
-    branches:
-      - master
   workflow_dispatch:
 
 env:
@@ -41,8 +39,9 @@ jobs:
       - name: Test
         run: go test ./test/e2e/*
 
-  packer:
+  build:
     name: Packer Build
+    if: github.ref == "refs/heads/master"
     needs: [ branch, test ]
     runs-on: ubuntu-latest
     environment: ${{ needs.branch.outputs.env_name }}
