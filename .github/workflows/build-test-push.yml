@@ -9,6 +9,8 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
+  # https://www.codewrecks.com/post/github/choose-environment-from-branch/
+  # https://docs.github.com/en/actions/using-jobs/defining-outputs-for-jobs
   branch:
     name: Get branch name
     runs-on: ubuntu-latest
