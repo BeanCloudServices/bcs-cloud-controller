@@ -41,7 +41,7 @@ var log = logger.Logger{}
 func TestImageBuildForAwsUbuntuMicroK8s(t *testing.T) {
 	t.Parallel()
 	// The folder where we have our Terraform code
-	workingDir := "../../packer"
+	workingDir := "../../build/packer"
 
 	// At the end of the test, delete the AMI
 	defer test_structure.RunTestStage(t, "cleanup_ami", func() {
@@ -97,17 +97,17 @@ func buildAMI(t *testing.T, awsRegion string, workingDir string) {
 
 	packerOptions := &packer.Options{
 		// The path to where the Packer template is located
-		Template: "../../packer/aws-ubuntu.pkr.hcl",
+		Template: "../../build/packer/aws-ubuntu.pkr.hcl",
 
 		// Variable file to to pass to our Packer build using -var-file option
 		VarFiles: []string{
 			//varFile.Name(),
-			"../../packer/aws-ubuntu.auto.pkrvars.hcl",
+			"../../build/packer/aws-ubuntu.auto.pkrvars.hcl",
 		},
 
 		// Environment settings to avoid plugin conflicts
 		Env: map[string]string{
-			"PACKER_PLUGIN_PATH": "../../packer/.packer.d/plugins",
+			"PACKER_PLUGIN_PATH": "../../build/packer/.packer.d/plugins",
 		},
 
 		// Only build the AWS AMI
@@ -528,17 +528,17 @@ func TestImageBuild(t *testing.T) {
 
 	packerOptions := &packer.Options{
 		// The path to where the Packer template is located
-		Template: "../../packer/aws-ubuntu.pkr.hcl",
+		Template: "../../build/packer/aws-ubuntu.pkr.hcl",
 
 		// Variable file to to pass to our Packer build using -var-file option
 		VarFiles: []string{
 			//varFile.Name(),
-			"../../packer/aws-ubuntu.auto.pkrvars.hcl",
+			"../../build/packer/aws-ubuntu.auto.pkrvars.hcl",
 		},
 
 		// Environment settings to avoid plugin conflicts
 		Env: map[string]string{
-			"PACKER_PLUGIN_PATH": "../../packer/.packer.d/plugins",
+			"PACKER_PLUGIN_PATH": "../../build/packer/.packer.d/plugins",
 		},
 
 		// Only build the AWS AMI
