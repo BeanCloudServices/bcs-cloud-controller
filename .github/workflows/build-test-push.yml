@@ -28,7 +28,8 @@ jobs:
       env_name: ${{ steps.branch-check.outputs.env_name }}
 
   test:
-    name: Run tests
+    name: Test
+
 
     runs-on: ubuntu-latest
     environment: sandbox
