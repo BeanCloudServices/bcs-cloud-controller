@@ -44,7 +44,8 @@ jobs:
         run: go test ./test/e2e/*
 
   build-ami:
-    name: Packer Build
+    name: Build AMI
+
     if: github.ref == 'refs/heads/master'
     needs: [ branch, test ]
     runs-on: ubuntu-latest
