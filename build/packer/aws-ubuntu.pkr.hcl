@@ -88,9 +88,9 @@ build {
 
   provisioner "shell" {
     inline = [
+      "sudo apt install snapd", # fix device not yet seeded or device model not acknowledged
+      # https://forum.snapcraft.io/t/too-early-for-operations-solved/12243/20
       "sudo snap install microk8s --classic",
-      "sudo usermod -a -G microk8s $USER",
-#      "sudo chown -f -R $USER ~/.kube",
     ]
   }
 }
