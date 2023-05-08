@@ -8,6 +8,7 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   BUILD_FOLDER: ./build/packer
+  GH_PAT: ${{ inputs.gh-pat || secrets.GITHUB_TOKEN }}
 
 jobs:
   # https://www.codewrecks.com/post/github/choose-environment-from-branch/
@@ -62,8 +63,15 @@ jobs:
           version: '1.8.6'
 
       - name: Packer Init
+        env:
+          PACKER_GITHUB_API_TOKEN: ${{ env.GH_PAT }}
         run: |
           packer init ${{ env.BUILD_FOLDER }}
+
+      - name: Packer validate
+        id: validate
+        run: |
+          packer validate ${{ env.BUILD_FOLDER }}
 
       - name: Build Image
         run: |
