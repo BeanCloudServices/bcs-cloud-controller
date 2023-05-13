@@ -1,6 +1,7 @@
 name: Check and Increment Version on Merge
 
-on: [push]
+on: [pull_request]
+
 
 jobs:
   print-version:
